@@ -14,31 +14,57 @@ class Animal:
     """
     def __init__(self):
         #agility attributes
-        self.speed = 0
+        self.speed = 5
         #damage attributes
-        self.attack = 0
+        self.strength = 5
         #health attributes
-        self.health = 0
-        self.defense = 0
-        self.defenseFactor = 0
-    
-    def animalSound(self):
-        return ''
+        self.health = 500
+        self.defense = 5
+        self.defenseFactor = 5
+        self.equipment = {"helmet" : "",
+                          "chest plate": ""} #add or remove based on animal
 
+    def warCry(self):
+        #Simple method that returns an animals warcry as string
+        return ""
+
+    def printAnimalStat(self):
+        #print animal stats
+        print("speed: "         + str(self.speed)           + '\n'+
+              "attack: "        + str(self.attack)          + '\n'+
+              "health: "        + str(self.health)          + '\n'+
+              "defense: "       + str(self.defense)         + '\n'+
+              "defenseFactor : "+ str(self.defenseFactor)   + '\n'+
+              "equipment : "    + str(self.equipment)
+              )
+        
     def attackDamage(self):
         #Simple method that returns the total damage this animal will do
-        return(self.speed*self.attack)#'*' is times, 3*4=12
-    
-    def defensePadding(self, damageIn):
+        return(randint(1, self.strength)*randint(1, self.speed))#'*' is times, 3*4=12
+
+    def curHealth(self):
+        #Return the current health point of an animal
+        return(self.health)    
+
+    def damagePad(self):
         #Simple method that will be run uppon receiving damage, helps negate some of the damage comming in
-        return(damageIn-(self.defense+(randint(1, self.defenseFactor))))#Gabe, randint(x, y) gives us a random number in between those two points
-    
+        return(randint(1, self.defense)+randint(1, self.defenseFactor))#Gabe, randint(x, y) gives us a random number in between those two points
+
     def takeDamage(self, damage):
-        #Simple method that removes health
-        self.health -= damage
+        #Simple method that deals damage to self
+        damageT = damage - self.damagePad()
+        if(damageT > 0):
+            self.health -= damage
+        else:
+            self.health -= 1
+    
+    def attack(self, attackDamage, defendingAnimal):
+        #Input damage being delt at defending animal object
+        defendingAnimal.takeDamage(attackDamage)
+    
 
 """
-TODO - Gabe: 
+TODO - Gabe:
 
 Create these classes in this file:
 
@@ -48,7 +74,8 @@ class Mammal(Animal):
     {...}
 class Bird(Animal):
     {...}
-
+class Fiction(Animal):
+    {...}
 START THESE BY TONIGHT, use the default one I made to help you.
                         add your name to the authors(replace the '...') when you work on it.
 """
