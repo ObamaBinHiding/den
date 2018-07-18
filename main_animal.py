@@ -78,4 +78,9 @@ class Fiction(Animal):
     {...}
 START THESE BY TONIGHT, use the default one I made to help you.
                         add your name to the authors(replace the '...') when you work on it.
+
+**********************************************************
+**MAKE SURE TO ADJUST CLASS VARIABLES FOR EACH SUB-CLASS**
+**********************************************************
+
 """
