@@ -7,12 +7,24 @@
 #imports needed
 from random import randint
 
-#classes
+###########
+##classes##
+###########
+
+#global variables for now
+chanceOfDodge = 20
+
+#class Player
+#class Player:
+
+#class Animal
 class Animal:
     """
         This is the main animal class of the mini-game, all other animal classes come from this one
     """
-    def __init__(self):
+    def __init__(self):#constructor
+        #animal level
+        self.level = 0
         #agility attributes
         self.speed = 5
         #damage attributes
@@ -27,11 +39,15 @@ class Animal:
     def warCry(self):
         #Simple method that returns an animals warcry as string
         return ""
+    def getLevel(self):
+        #Simple method that returns a animals level
+        return(self.level)
 
     def printAnimalStat(self):
         #print animal stats
-        print("speed: "         + str(self.speed)           + '\n'+
-              "attack: "        + str(self.attack)          + '\n'+
+        print("level: "         + str(self.level)           + '\n'+
+              "speed: "         + str(self.speed)           + '\n'+
+              "strength: "      + str(self.strength)        + '\n'+
               "health: "        + str(self.health)          + '\n'+
               "defense: "       + str(self.defense)         + '\n'+
               "defenseFactor : "+ str(self.defenseFactor)   + '\n'+
@@ -60,9 +76,74 @@ class Animal:
     
     def attack(self, attackDamage, defendingAnimal):
         #Input damage being delt at defending animal object
-        defendingAnimal.takeDamage(attackDamage)
+        if(defendingAnimal.doesDodge()==False):
+            defendingAnimal.takeDamage(attackDamage)
     
+    def doesDodge(self):
+        #Returns whether an attack has been succesfully dodged or not
+        if(randint(0, chanceOfDodge) <= self.speed):
+            return True
+        return False
 
+#class Reptile
+#Inherits from class Animal
+class Reptile(Animal):
+    """
+    This is the default reptile class, all reptiles inherit from this class
+    """
+    def __init__(self): #constructor
+        #inherit from parent class
+        super(Reptile, self).__init__()
+        #agility attributes
+        self.speed = 2
+        #health attributes
+        self.defense = 7
+        self.defenseFactor = 7
+
+#class Mammal
+#Inherits from class Animal
+class Mammal(Animal):
+    """
+    This is the default mammal class, all mammals inherit from this class
+    """
+    def __init__(self): #constructor
+        #inherit from parent class
+        super(Mammal, self).__init__()
+        #agility attributes
+        self.speed = 7
+        #damage attributes
+        self.strength = 7
+        #health attributes
+        self.defense = 3
+        self.defenseFactor = 4
+
+#class Bird
+#Inherits from Animal
+class Bird(Animal):
+    """
+    This is the default bird class, all birds inherit from this class
+    """
+    def __init__(self): #contstructor
+        #inherit from parent class
+        super(Bird, self).__init__()
+        #agility attributes 
+        self.speed = 10
+        #damage attribute 
+        self.strength = 2
+        #health attributes 
+        self.health = 400
+        self.defense = 3
+        self.defenseFactor = 2
+
+#class Fiction
+#Inherits from Animal 
+class Fiction(Animal):
+    """
+    This is the default Fiction class, all Fictional animals inherit from this class
+    """
+    def __init__(self): #constructor
+        super(Fiction, self).__init__()
+        #This class stays as is
 """
 TODO - Gabe:
 
